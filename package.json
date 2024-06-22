@@ -1,0 +1,26 @@
+{
+  "name": "hasil-studi-mj",
+  "version": "1.0.0",
+  "description": "isi repositori ini adalah bentuk kemandirian agar tidak bergantung kepada forlap dikti",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mjmokhtar/hasil-studi-mj.git"
+  },
+  "keywords": [
+    "ipk"
+  ],
+  "author": "mj",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mjmokhtar/hasil-studi-mj/issues"
+  },
+  "homepage": "https://github.com/mjmokhtar/hasil-studi-mj#readme",
+  "dependencies": {
+    "axios": "^1.7.2",
+    "express": "^4.19.2"
+  }
+}

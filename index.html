@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Fetching Example</title>
+</head>
+<body>
+    <div>
+        <h1>Data Umum</h1>
+        <p>Nama: <span id="nama"></span></p>
+        <p>Jenis Kelamin: <span id="jk"></span></p>
+        <p>NIPD: <span id="nipd"></span></p>
+        <p>Nama PT: <span id="namapt"></span></p>
+        <p>Nama Jenjang: <span id="namajenjang"></span></p>
+        <p>Nama Prodi: <span id="namaprodi"></span></p>
+        <p>Mulai SMT: <span id="mulai_smt"></span></p>
+        <p>Jenis Daftar: <span id="nm_jns_daftar"></span></p>
+        <p>Keterangan Keluar: <span id="ket_keluar"></span></p>
+        <p>Tanggal Keluar: <span id="tgl_keluar"></span></p>
+        <p>No Seri Ijazah: <span id="no_seri_ijazah"></span></p>
+    </div>
+
+    <div>
+        <h1>Status Kuliah</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID SMT</th>
+                    <th>SKS SMT</th>
+                    <th>Status Mahasiswa</th>
+                </tr>
+            </thead>
+            <tbody id="status-kuliah-tbody">
+                <!-- Rows will be appended here -->
+            </tbody>
+        </table>
+    </div>
+
+    <div>
+        <h1>Studi</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Kode MK</th>
+                    <th>Nama MK</th>
+                    <th>SKS MK</th>
+                    <th>ID SMT</th>
+                </tr>
+            </thead>
+            <tbody id="studi-tbody">
+                <!-- Rows will be appended here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('http://localhost:3000/api/data')
+                .then(response => response.json())
+                .then(data => {
+                    const dataUmum = data.dataumum;
+                    document.getElementById('nama').textContent = dataUmum.nm_pd;
+                    document.getElementById('jk').textContent = dataUmum.jk;
+                    document.getElementById('nipd').textContent = dataUmum.nipd;
+                    document.getElementById('namapt').textContent = dataUmum.namapt;
+                    document.getElementById('namajenjang').textContent = dataUmum.namajenjang;
+                    document.getElementById('namaprodi').textContent = dataUmum.namaprodi;
+                    document.getElementById('mulai_smt').textContent = dataUmum.mulai_smt;
+                    document.getElementById('nm_jns_daftar').textContent = dataUmum.nm_jns_daftar;
+                    document.getElementById('ket_keluar').textContent = dataUmum.ket_keluar;
+                    document.getElementById('tgl_keluar').textContent = dataUmum.tgl_keluar;
+                    document.getElementById('no_seri_ijazah').textContent = dataUmum.no_seri_ijazah;        
+
+                    const statusKuliahTbody = document.getElementById('status-kuliah-tbody');
+                    data.datastatuskuliah.forEach(status => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${status.id_smt}</td>
+                            <td>${status.sks_smt}</td>
+                            <td>${status.nm_stat_mhs}</td>
+                        `;
+                        statusKuliahTbody.appendChild(row);
+                    });
+
+                    const studiTbody = document.getElementById('studi-tbody');
+                    data.datastudi.forEach(studi => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${studi.kode_mk}</td>
+                            <td>${studi.nm_mk}</td>
+                            <td>${studi.sks_mk}</td>
+                            <td>${studi.id_smt}</td>                    
+                        `;
+                        studiTbody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        });
+    </script>
+</body>
+</html>
