@@ -19,28 +19,13 @@ Make sure you have Node.js and npm installed on your machine.
 - [Node.js](https://nodejs.org/)
 - [npm](https://www.npmjs.com/)
 
-### Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/your-repo-name.git
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd your-repo-name
-   ```
-3. Install the dependencies:
-   ```bash
-   npm install
-   ```
-
 ### Running the Server
 
 Start the server with the following command:
 ```bash
-node index.js
+node server.js
 ```
-The server will run on `http://localhost:3000`.
+The server will run on vercel `https://hasil-studi-mj.vercel.app/`.
 
 ### API Endpoints
 
@@ -64,7 +49,7 @@ GET /api/data
 
 To fetch and display the data from the API in a web page, you can use the following JavaScript code. This code fetches the data from the API and populates the HTML elements with the corresponding data.
 ```
-index.html
+https://mjmokhtar.netlify.app/hasil-studi
 ```
 
 ### CORS Configuration
@@ -86,6 +71,3 @@ If there is an error while fetching data from the external API, the server respo
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-```
-
-Pastikan Anda menyimpan `README.md` dengan pembaruan di atas. Kode HTML yang diberikan berfungsi untuk mengambil data dari endpoint API `/api/data` dan menampilkannya di halaman web. Anda dapat menyesuaikan sesuai kebutuhan.
