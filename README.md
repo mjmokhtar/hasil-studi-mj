@@ -2,8 +2,6 @@
 
 isi repositori ini adalah bentuk kemandirian agar tidak bergantung kepada forlap dikti
 
-
-```markdown
 # Express.js API Server
 
 A simple API server built with Express.js and Axios.
@@ -22,9 +20,11 @@ Make sure you have Node.js and npm installed on your machine.
 ### Running the Server
 
 Start the server with the following command:
+
 ```bash
 node server.js
 ```
+
 The server will run on vercel `https://hasil-studi-mj.vercel.app/`.
 
 ### API Endpoints
