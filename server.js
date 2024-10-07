@@ -1,5 +1,6 @@
 const express = require('express');
-const axios = require('axios');
+const fs = require('fs');
+const path = require('path');
 const app = express();
 const port = process.env.PORT || 3000; // Use the PORT environment variable or default to 3000
 
@@ -9,13 +10,22 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get('/api/data', async (req, res) => {
-    try {
-        const response = await axios.get('https://api-frontend.kemdikbud.go.id/detail_mhs/MDVGMTY1N0QtMDc2OC00RTU4LTk4NzYtNUQ5RThEOTM0MEFB');
-        res.json(response.data);
-    } catch (error) {
-        res.status(500).send('Error fetching data');
-    }
+// Route to serve data.json from the repository
+app.get('/api/data', (req, res) => {
+    const filePath = path.join(__dirname, 'data.json'); // Adjust the path to your repository's data.json location
+    fs.readFile(filePath, 'utf8', (err, data) => {
+        if (err) {
+            console.error('Error reading data.json:', err);
+            return res.status(500).send('Error fetching data');
+        }
+        try {
+            const jsonData = JSON.parse(data);
+            res.json(jsonData);
+        } catch (parseErr) {
+            console.error('Error parsing JSON:', parseErr);
+            res.status(500).send('Error parsing data');
+        }
+    });
 });
 
 // Route to return the JSON with dynamic values including BUILD_DATE
